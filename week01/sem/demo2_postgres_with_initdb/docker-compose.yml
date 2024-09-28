@@ -1,0 +1,14 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+      - ./createdb.sql:/docker-entrypoint-initdb.d/createdb.sql
+    ports:
+      - "5432:5432"
