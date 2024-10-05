@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  postgres_master:
+    container_name: postgres_master
+    image: postgres:14.5
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./data-slave:/var/lib/postgresql/data-slave
+      - ./init-script:/etc/postgresql/init-script
+      - ./init-script/config/pg_hba.conf:/etc/postgresql/pg_hba.conf
+      - ./init-script/config/postgres.conf:/etc/postgresql/postgresql.conf
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  postgres_slave:
+    container_name: postgres_slave
+    image: postgres:14.5
+    restart: always
+    volumes:
+      - ./data-slave:/var/lib/postgresql/data
+      - ./init-script/config/pg_hba.conf:/etc/postgresql/pg_hba.conf
+      - ./init-script/config/postgres.conf:/etc/postgresql/postgresql.conf
+    ports:
+      - "127.0.0.1:5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
