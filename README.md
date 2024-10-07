@@ -1,5 +1,5 @@
-# hse_ftda_dwh_course_2024
-Репозиторий курса "Modern Storages and Data Warehousing", ФТиАД, НИУ ВШЭ, 2024
+# hse_se_dwh_course_2024
+Репозиторий курса "Modern Storages and Data Warehousing", ПИ, НИУ ВШЭ, 2024
 
 Группа курса в Telegram:<br>
 https://t.me/+k_eQ7CTnsZFmMzgy
