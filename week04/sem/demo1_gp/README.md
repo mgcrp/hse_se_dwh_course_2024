@@ -2,8 +2,8 @@
 
 1) Используемый контейнер
 
-Ссылка на DockerHub - https://hub.docker.com/r/as2sp/greenplum7
-Его конфигурация на GitHub - https://github.com/as2sp/docker-greenplum7
+Ссылка на DockerHub - https://hub.docker.com/r/as2sp/greenplum7 <br>
+Его конфигурация на GitHub - https://github.com/as2sp/docker-greenplum7 <br>
 Внутри уже поднимается мастер и 4 сегмента внутри одного контейнера. Так делать неправильно, но исключительно для демо за неимением лучшего - пойдет.
 
 2) Запускаем GreenPlum
@@ -123,14 +123,14 @@ DISTRIBUTED BY (S_SUPPKEY);
 - Клонируем https://github.com/yuan-fei/TPCH-Greenplum
 - Переходим в tpch/dbgen
 - Модифицируем Makefile
-    - https://github.com/yuan-fei/TPCH-Greenplum/blob/master/tpch/dbgen/Makefile#L103
+    - https://github.com/yuan-fei/TPCH-Greenplum/blob/master/tpch/dbgen/Makefile#L103 <br>
     Устанавливаем `CC = clang`
-    - https://github.com/yuan-fei/TPCH-Greenplum/blob/master/tpch/dbgen/Makefile#L109-L111
+    - https://github.com/yuan-fei/TPCH-Greenplum/blob/master/tpch/dbgen/Makefile#L109-L111 <br>
     Меняем при необходимости (например, если собираете проект под Windows, а не под Linux)
 - В проекте используется старый стандарт языка C, поэтому может потребоваться модифицировать следующие файлы
-    - https://github.com/yuan-fei/TPCH-Greenplum/blob/master/tpch/dbgen/bm_utils.c#L71
+    - https://github.com/yuan-fei/TPCH-Greenplum/blob/master/tpch/dbgen/bm_utils.c#L71 <br>
     `#include <malloc.h>` -> `#include <sys/malloc.h>`
-    - https://github.com/yuan-fei/TPCH-Greenplum/blob/master/tpch/dbgen/varsub.c#L44
+    - https://github.com/yuan-fei/TPCH-Greenplum/blob/master/tpch/dbgen/varsub.c#L44 <br>
     `#include <malloc.h>` -> `#include <sys/malloc.h>`
 - Если все пошло успешно - то эта команда выдаст справку по функции dbgen
 ```bash
@@ -163,4 +163,4 @@ psql $GREENPLUM_URI
 \copy "lineitem"   from '/{your github path}/GitHub/TPCH-Greenplum/tpch/dbgen/lineitem.csv'      DELIMITER '|' CSV;
 ```
 
-4) Демо, которые я показывал на семинаре - `demo.sql`
+4) Скрипты, которые я показывал на семинаре - `demo.sql`
