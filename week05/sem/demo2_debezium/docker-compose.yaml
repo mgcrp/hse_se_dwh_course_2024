@@ -68,7 +68,7 @@ services:
 
   # Debezium Backend
   debezium:
-    image: debezium/connect:latest
+    image: quay.io/debezium/connect:latest
     restart: always
     container_name: debezium
     hostname: debezium
