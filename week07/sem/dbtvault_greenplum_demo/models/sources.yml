@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: tpch_sample
+    database: postgres
+    schema: tpch
+    tables:
+      - name: lineitem
+        identifier: lineitem
+      - name: customer
+        identifier: customer
+      - name: orders
+        identifier: orders
+      - name: partsupp
+        identifier: partsupp
+      - name: supplier
+        identifier: supplier
+      - name: part
+        identifier: part
+      - name: nation
+        identifier: nation
+      - name: region
+        identifier: region

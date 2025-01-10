@@ -1,0 +1,6 @@
+packages:
+  # - package: Datavault-UK/automate_dv
+  #   version: [">=0.9.0", "<1.0.0"]
+  - git: "https://github.com/kzzzr/dbtvault.git"
+    revision: master
+    warn-unpinned: false

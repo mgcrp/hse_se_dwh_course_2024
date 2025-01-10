@@ -1,0 +1,17 @@
+config:
+  send_anonymous_usage_stats: False
+  use_colors: True
+  partial_parse: True
+
+dbtvault_greenplum_demo:
+  outputs:
+    dev:
+      type: postgres
+      dbname: postgres
+      schema: public
+      host: localhost
+      port: 5432
+      user: postgres
+      password: postgres
+      
+  target: dev

@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: postgres_business
+    description: 'Our main product db'
+    database: postgres
+    schema: business
+    tables:
+      - name: categories
+        description: 'A table with item categories'
+        columns:
+          - name: category_id
+            description: 'INT, primary key'
+          - name: ategory_name
+            description: 'TEXT, human readable name'
+      - name: customers
+      - name: manufacturers
+      - name: deliveries
+      - name: price_change
+      - name: products
+      - name: purchase_items
+      - name: purchases
+      - name: stores
