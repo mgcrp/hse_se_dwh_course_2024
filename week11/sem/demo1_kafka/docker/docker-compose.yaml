@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.3.1
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  broker:
+    image: confluentinc/cp-enterprise-kafka:5.3.1
+    hostname: broker
+    container_name: broker
+    depends_on:
+      - zookeeper
+    ports:
+      - '9092:9092'
+      - '29094:29094'
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: EXTERNAL://localhost:29094,INTERNAL://broker:9092
+      KAFKA_LISTENERS: EXTERNAL://0.0.0.0:29094,INTERNAL://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+
+  influxdb:
+    image: influxdb:1.7.9
+    container_name: influxdb
+    depends_on:
+      - broker
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./data:/var/lib/influxdb
+  
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    depends_on:
+      - influxdb
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - grafana-provisioning:/etc/grafana/provisioning
+
+volumes:
+  grafana-storage:
+  grafana-provisioning:
